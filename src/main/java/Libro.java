@@ -1,25 +1,16 @@
 import javax.swing.*;
 
 public class Libro {
-    private Integer id;
     private String titulo;
     private String autor;
     private String genero;
-    private String editorial;
+    private boolean alquilado;
 
-    public Libro(String titulo, String autor, String genero, String editorial) {
+    public Libro(String titulo, String autor, String genero, boolean alquilado) {
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
-        this.editorial = editorial;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.alquilado = alquilado;
     }
 
     public String getTitulo() {
@@ -46,22 +37,21 @@ public class Libro {
         this.genero = genero;
     }
 
-    public String getEditorial() {
-        return editorial;
+    public boolean isAlquilado() {
+        return alquilado;
     }
 
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
+    public void setAlquilado(boolean alquilado) {
+        this.alquilado = alquilado;
     }
 
     @Override
     public String toString() {
         return "Libro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
+                "titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", genero='" + genero + '\'' +
-                ", editorial='" + editorial + '\'' +
+                ", alquilado=" + alquilado +
                 '}';
     }
 }
