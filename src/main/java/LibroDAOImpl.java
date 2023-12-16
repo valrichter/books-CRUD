@@ -61,7 +61,6 @@ public class LibroDAOImpl implements LibroDAO {
         try {
             Connection db = Database.getConexion();
             PreparedStatement ps = db.prepareStatement(sql);
-            libro.setAlquilado(true);
             ps.setBoolean(1, libro.isAlquilado());
             ps.setString(2, libro.getTitulo().toLowerCase());
             int result = ps.executeUpdate();

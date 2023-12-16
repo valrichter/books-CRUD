@@ -1,28 +1,25 @@
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        LibroDAO libroDAO = new LibroDAOImpl();
-        Libro a = new Libro("A", "A", "A", false);
-        Libro b = new Libro("B", "B", "B", false);
+        crearTabla();
+    }
 
-        System.out.println("CREATE");
-        libroDAO.insertar(a);
-        libroDAO.insertar(b);
-        System.out.println();
+    public static void crearTabla() {
+        String sql = "CREATE TABLE libro ("
+                + "titulo VARCHAR(255) PRIMARY KEY,"
+                + "autor VARCHAR(255) NOT NULL,"
+                + "genero VARCHAR(255) NOT NULL,"
+                + "alquilado BOOLEAN NOT NULL"
+                + ");";
 
-        System.out.println("READ");
-        System.out.println(libroDAO.listar());
-        System.out.println();
+        try (Connection connection = Database.getConexion()) {
+             Statement statement = connection.createStatement();
 
-        System.out.println("UPDATE");
-        int u = libroDAO.alquilar(a);
-        System.out.println(u);
-        System.out.println();
-
-        System.out.println("DELETE");
-        int d = libroDAO.borrar(b);
-        System.out.println(d);
-        System.out.println();
+            // Ejecutar la consulta
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

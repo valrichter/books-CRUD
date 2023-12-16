@@ -2,15 +2,15 @@ import java.sql.*;
 
 // Patron SINGLETON para crear solo una connecion a la base de datos
 public class Database {
-    private static final String URL = "jdbc:mysql://localhost:33060/biblioteca";
-    private static final String USUARIO = "root";
-    private static final String CONTRASENA = "secret";
+
+    // URL de la base de datos en MySQL en Railway (no se debe harcodear pero a fines del proyecto es util)
+    private static final String URL = "jdbc:mysql://root:-dBebFg2af4F-aChCFCBe36a352c2Ebf@roundhouse.proxy.rlwy.net:40002/railway";
 
     private Database() {
     }
 
     public static Connection getConexion() throws SQLException {
-        Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+        Connection conexion = DriverManager.getConnection(URL);
         if (conexion != null) {
             System.out.println("Conexión exitosa");
         } else {

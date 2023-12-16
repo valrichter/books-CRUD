@@ -63,12 +63,22 @@ public class UI extends javax.swing.JFrame {
                     boolean alquilado = alquiladoField.getText().toLowerCase().equals("si");
                     Libro libro = new Libro(tituloField.getText(), autorField.getText(), generoField.getText(), alquilado);
                     int r = libroDAO.alquilar(libro);
-                    String lMSG = "Usted ha alquilado el libro '" + tituloField.getText() + "' correctamente";
-                    String rMSG = "Usted ha alquilado " + r + " libro/s";
-                    list.setModel(listModel);
-                    listModel.removeAllElements();
-                    listModel.addElement(lMSG);
-                    listModel.addElement(rMSG);
+                    if (alquilado) {
+                        String lMSG = "Usted ha alquilado el libro '" + tituloField.getText() + "' correctamente";
+                        String rMSG = "Usted ha alquilado " + r + " libro/s";
+                        list.setModel(listModel);
+                        listModel.removeAllElements();
+                        listModel.addElement(lMSG);
+                        listModel.addElement(rMSG);
+                    } else {
+                        String lMSG = "Usted ha devuelto el libro '" + tituloField.getText() + "' correctamente";
+                        String rMSG = "Usted ha devuelto " + r + " libro/s";
+                        list.setModel(listModel);
+                        listModel.removeAllElements();
+                        listModel.addElement(lMSG);
+                        listModel.addElement(rMSG);
+                    }
+
                 }
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
@@ -132,7 +142,7 @@ public class UI extends javax.swing.JFrame {
         Pattern tieneNumeros = Pattern.compile("\\d+");
 
         // Crea un objeto Matcher para buscar coincidencias en el texto
-        Matcher matcher = tieneNumeros.matcher(tituloField.getText());
+        Matcher matcher = tieneNumeros.matcher(generoField.getText().toLowerCase());
 
         // Verifica si se encontró al menos una coincidencia
         if (matcher.find()) {
@@ -169,14 +179,6 @@ public class UI extends javax.swing.JFrame {
         Libro l = libroDAO.getByTitulo(tituloField.getText());
         if (l == null) {
             String msg = "El TITULO no existe";
-            list.setModel(listModel);
-            listModel.removeAllElements();
-            listModel.addElement(msg);
-            return false;
-        }
-
-        if (l.isAlquilado()) {
-            String msg = "El libro ya esta alquilado";
             list.setModel(listModel);
             listModel.removeAllElements();
             listModel.addElement(msg);
@@ -244,7 +246,7 @@ public class UI extends javax.swing.JFrame {
         UI ui = new UI();
         ui.setContentPane(ui.panel);
         ui.setTitle("CRUD de Libros");
-        ui.setSize(400, 300);
+        ui.setSize(1000, 300);
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
         ui.setDefaultCloseOperation(EXIT_ON_CLOSE);
