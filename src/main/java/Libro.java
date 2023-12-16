@@ -1,10 +1,13 @@
-import javax.swing.*;
+import java.sql.SQLException;
 
 public class Libro {
     private String titulo;
     private String autor;
     private String genero;
     private boolean alquilado;
+
+    public Libro() {;
+    }
 
     public Libro(String titulo, String autor, String genero, boolean alquilado) {
         this.titulo = titulo;
@@ -53,5 +56,32 @@ public class Libro {
                 ", genero='" + genero + '\'' +
                 ", alquilado=" + alquilado +
                 '}';
+    }
+
+    public static class Main {
+        public static void main(String[] args) throws SQLException {
+            LibroDAO libroDAO = new LibroDAOImpl();
+            Libro a = new Libro("A", "A", "A", false);
+            Libro b = new Libro("B", "B", "B", false);
+
+            System.out.println("CREATE");
+            libroDAO.insertar(a);
+            libroDAO.insertar(b);
+            System.out.println();
+
+            System.out.println("READ");
+            System.out.println(libroDAO.listar());
+            System.out.println();
+
+            System.out.println("UPDATE");
+            int u = libroDAO.alquilar(a);
+            System.out.println(u);
+            System.out.println();
+
+            System.out.println("DELETE");
+            int d = libroDAO.borrar(b);
+            System.out.println(d);
+            System.out.println();
+        }
     }
 }

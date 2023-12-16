@@ -9,4 +9,6 @@ public interface LibroDAO {
     int alquilar(Libro libro)throws SQLException;
 
     int borrar(Libro libro)throws SQLException;
+
+    Libro getByTitulo(String titulo)throws SQLException;
 }

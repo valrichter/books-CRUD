@@ -93,4 +93,30 @@ public class LibroDAOImpl implements LibroDAO {
             return 0;
         }
     }
+
+    @Override
+    public Libro getByTitulo(String titulo) throws SQLException {
+        String sql = "SELECT autor, titulo, genero, alquilado FROM libro WHERE titulo = ?";
+        Libro libro = null;
+
+        Connection db = Database.getConexion();
+        PreparedStatement ps = db.prepareStatement(sql);
+        ps.setString(1, titulo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            String otitulo = rs.getString("titulo");
+            String autor = rs.getString("autor");
+            String genero = rs.getString("genero");
+            boolean alquilado = rs.getBoolean("alquilado");
+
+            libro = new Libro(otitulo, autor, genero, alquilado);
+        }
+
+        Database.closeResultSet(rs);
+        Database.closePreparedStatement(ps);
+        Database.closeConnection(db);
+
+        return libro;
+    }
 }
