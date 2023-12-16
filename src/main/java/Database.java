@@ -3,8 +3,9 @@ import java.sql.*;
 // Patron SINGLETON para crear solo una connecion a la base de datos
 public class Database {
 
-    // URL de la base de datos en MySQL en Railway (no se debe harcodear pero a fines del proyecto es util)
-    private static final String URL = "jdbc:mysql://root:-dBebFg2af4F-aChCFCBe36a352c2Ebf@roundhouse.proxy.rlwy.net:40002/railway";
+//    private static final String URLprod = "jdbc:mysql://root:-dBebFg2af4F-aChCFCBe36a352c2Ebf@roundhouse.proxy.rlwy.net:40002/railway";
+    // LOCAL
+    private static final String URL = "jdbc:mysql://root:secret@localhost:33060/biblioteca";
 
     private Database() {
     }
