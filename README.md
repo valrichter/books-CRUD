@@ -1,24 +1,16 @@
 # CREACIÓN DE UN CRUD DE LIBROS PARA UNA BIBLIOTECA - Richter Valentin
 
-### SQL query para crear la tabla de libros
-```
-CREATE TABLE libro (
-titulo VARCHAR(255) PRIMARY KEY,
-autor VARCHAR(255) NOT NULL,
-genero VARCHAR(255) NOT NULL,
-alquilado BOOLEAN NOT NULL
-);
-```
-
 ### Como correr el proyecto
 1. Descargar el repositorio
-2. Correr el UI.form en el IDE de IntlleiJ porque en NetbEans no es compatible
+2. Correr el UI.form en el IDE de IntlleiJ porque en NetBeans no es compatible
+3. Probar cada funcionalidad
 
 ### Aclaraciones
 - Se intento ejecutar dentro de netbeans pero no se pudo
 - El programa es lento pues esta conectando a una base de datos en la nube entonces tarda en responder
 - Deploy de la db en la pagina externa 'Railway'
 - Se implementaron la acciones de ingresar, listar, alquilar y borrar
+- Se utlizo el patron de disenio DAO
 - Trabajo echo con Java 17
 
 ### Requisitos funcionales:
@@ -47,3 +39,12 @@ Esta verificaion se hace en el form en la clase UI, con los metodos ```isValidIN
 - Se debe crear un aviso cuando se creen, listen, actualicen y eliminen:  
 Se crea un aviso debajo de los botones mediante un objeto listModel
 
+### SQL query para crear la tabla de libros
+```
+CREATE TABLE libro (
+titulo VARCHAR(255) PRIMARY KEY,
+autor VARCHAR(255) NOT NULL,
+genero VARCHAR(255) NOT NULL,
+alquilado BOOLEAN NOT NULL
+);
+```
